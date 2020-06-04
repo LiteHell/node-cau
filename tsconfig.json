@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          
+    "module": "commonjs",                     
+    "outDir": "./dist",     
+    "rootDir": "./src",                       
+    "strict": true,        
+    "rootDirs": ["./src"],
+    "moduleResolution": "node", 
+    "noImplicitAny": true,           
+    "esModuleInterop": true,                    
+    "forceConsistentCasingInFileNames": true ,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

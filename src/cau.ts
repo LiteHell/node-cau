@@ -121,7 +121,8 @@ export default class Cau {
                 closed: i.clsefg,
                 schedule: entities.decode(i.ltbdrm),
                 flexible: i.flx,
-                remarks: entities.decode(i.remk)
+                remarks: entities.decode(i.remk),
+                classType: i.usktp
             };
         });
 

@@ -60,4 +60,5 @@ declare type CauSubject = {
     schedule: string;
     flexible: string;
     remarks: string;
+    classType: string;
 };

@@ -20,7 +20,7 @@ export default class CsvWriter implements FileWriter {
         });
         switch(option) {
             case FileWriterPrepareOption.Full:
-                this._stringifier.write(['캠퍼스', '대학/교양', '학과/전공/영역', '개설대학','개설학과','학년','과정','이수구분','과목번호','분반','과목명','학점','시간','담당교수','폐강','강의시간','유연학기','비고'])
+                this._stringifier.write(['캠퍼스', '대학/교양', '학과/전공/영역', '개설대학','개설학과','학년','과정','이수구분','과목번호','분반','과목명','학점','시간','담당교수','폐강','강의시간','유연학기','비고','수업유형'])
                 break;
             case FileWriterPrepareOption.DepartmentsOnly:
                 this._stringifier.write(['캠퍼스', '대학코드', '대학/교양', '학과코드', '학과/전공/영역']);
@@ -50,7 +50,8 @@ export default class CsvWriter implements FileWriter {
                 subject.closed,
                 subject.schedule,
                 subject.flexible,
-                subject.remarks
+                subject.remarks,
+                subject.classType
             ]);
         } else if (department) {
             this._stringifier.write([

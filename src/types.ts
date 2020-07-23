@@ -66,5 +66,6 @@ type CauSubject = {
     closed: string,
     schedule: string,
     flexible: string,
-    remarks: string
+    remarks: string,
+    classType: string
 };

@@ -12,7 +12,7 @@
   "author": "LiteHell",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "commander": "^5.1.0",
     "csv-stringify": "^5.5.0",
     "decode-html": "^2.0.0",

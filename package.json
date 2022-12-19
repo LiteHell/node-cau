@@ -6,7 +6,7 @@
     "build": "tsc"
   },
   "bin": {
-    "caucrawl": "./dist/crawller/index.js"
+    "caucrawl": "dist/crawller/index.js"
   },
   "main": "dist/cau.js",
   "author": "LiteHell",

@@ -15,7 +15,7 @@ commander.version('1.0.0')
          .option('--only-departments', 'Find for departments only')
          .option('--query <query>', 'Course query')
          .option('--delay <delay>', 'Crawlling delay in milliseconds, default value is 100', '100')
-         .option('--out <outFile>', 'Path to save, default is courses.csv')
+         .option('--outFile <outFile>', 'Path to save, default is courses.csv')
          .option('--type <type>', 'Sets output type, csv and json are supported. automatically set by output filename if not specified')
          .option('--retries <retries>', 'Retry count, default is 3', '3');
 const argv = commander.parse(process.argv);

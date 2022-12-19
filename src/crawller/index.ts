@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 import Cau from '../cau.js';
 import CsvWriter from './csvWriter';
 import commander from 'commander';

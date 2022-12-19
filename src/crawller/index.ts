@@ -3,6 +3,7 @@ import Cau from '../cau.js';
 import CsvWriter from './csvWriter';
 import commander from 'commander';
 import JsonWriter from './jsonWriter.js';
+import { withRetries } from "./retriable";
 
 commander.version('1.0.0')
          .description('Crawlls courses, deparmtent list, college list from CAU')
@@ -15,7 +16,8 @@ commander.version('1.0.0')
          .option('--query <query>', 'Course query')
          .option('--delay <delay>', 'Crawlling delay in milliseconds, default value is 100', '100')
          .option('--out <outFile>', 'Path to save, default is courses.csv')
-         .option('--type <type>', 'Sets output type, csv and json are supported. automatically set by output filename if not specified');
+         .option('--type <type>', 'Sets output type, csv and json are supported. automatically set by output filename if not specified')
+         .option('--retries <retries>', 'Retry count, default is 3', '3');
 const argv = commander.parse(process.argv);
 
 const cau = new Cau();
@@ -39,7 +41,8 @@ function sleep(ms: number): Promise<void> {
     const query : string = argv.query || null;
     const path : string= argv.outFile || 'courses.csv';
     const delay : number= Number(argv.delay) || 100;
-
+    const retries : number = Number(argv.retries) || 3;
+ 
     // get writer option
     let writerOption: FileWriterPrepareOption = FileWriterPrepareOption.Full;
     if (collegesOnly) writerOption = FileWriterPrepareOption.CollegesOnly;
@@ -58,7 +61,7 @@ function sleep(ms: number): Promise<void> {
             campus,
             course
         }
-        const colleges = await cau.getColleges(collegeFilter);
+        const colleges = await withRetries(async () => await cau.getColleges(collegeFilter), retries);
         if (collegesOnly) {
             for(let i of colleges)
                 await writer.write(campus, i);
@@ -66,13 +69,13 @@ function sleep(ms: number): Promise<void> {
             let departments : CauDepartment[] = [];
             for (let college of colleges) {
                 console.log(`Crawlling departments of ${college.name}(${college.code})`);
-                departments = departments.concat(await cau.getDepartments({
+                departments = departments.concat(await withRetries(async () => await cau.getDepartments({
                     year,
                     semester,
                     campus,
                     course,
                     college
-                }));
+                }), retries));
             }
             if (departmentsOnly) {
                 for (let i of departments)
@@ -80,7 +83,7 @@ function sleep(ms: number): Promise<void> {
             } else {
                 for (let department of departments) {
                     console.log(`Crawlling subjects of ${department.name}(${department.code})`);
-                    let subjects = await cau.search('', {campus, course, college: department.college, year, department, semester});
+                    let subjects = await withRetries(async () => await cau.search('', {campus, course, college: department.college, year, department, semester}), retries);
                     console.log(`Found ${subjects.length} subjects`);
                     for (let i of subjects)
                         await writer.write(department.college.campus, department.college, department, i);

@@ -1,4 +1,2 @@
-import Cau from './cau'
-import parseSubjectSchedule from './parseSubjectSchedule';
-
-export default { Cau, parseSubjectSchedule };
+export * from './cau'
+export * from './parseSubjectSchedule';

@@ -1,6 +1,6 @@
 {
   "name": "cau.ac.kr",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "library and utillity for crawlling cau.ac.kr",
   "scripts": {
     "build": "tsc"

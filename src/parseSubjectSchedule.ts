@@ -1,9 +1,9 @@
-type CauDayNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6
+export type CauDayNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6
 
 /**
  * Representiation of time when class begins and ends
  */
-type CauSubjectScheduleTimeslot = {
+export type CauSubjectScheduleTimeslot = {
     /**
      * Day
      * 
@@ -26,7 +26,7 @@ type CauSubjectScheduleTimeslot = {
     timeEndsAt: number,
 }
 
-type CauSubjectSchedule = {
+export type CauSubjectSchedule = {
     times: CauSubjectScheduleTimeslot[],
     location: string | null
 };

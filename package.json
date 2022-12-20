@@ -8,7 +8,8 @@
   "bin": {
     "caucrawl": "dist/crawller/index.js"
   },
-  "main": "dist/cau.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "LiteHell",
   "license": "MIT",
   "dependencies": {
